@@ -1,0 +1,56 @@
+<div style="text-align:center">
+  <h1>
+    MyAQ Angular Rest Example
+  </h1>
+
+  <div class='card' *ngIf='serverDetails'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class='col-md-8 text-justify'>
+          <div class='row'>
+            <div class='col-md-4'>Server Date:</div>
+            <div class='col-md-4'>{{serverDetails.date}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Server Time:</div>
+            <div class='col-md-4'>{{serverDetails.time}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Server Time Zone:</div>
+            <div class='col-md-4'>{{serverDetails.zoneName}}</div>
+          </div>
+
+          <br/>
+
+          <div class='row'>
+            <div class='col-md-4'>Converted Date:</div>
+            <div class='col-md-4'>{{serverDetails.toTimestamp | date:'dd/MM/yyyy'}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Converted Time:</div>
+            <div class='col-md-4'>{{serverDetails.toTimestamp | date: 'HH:mm:ss'}}</div>
+          </div>
+          <div class='row'>
+            <div class='col-md-4'>Converted Time Zone:</div>
+            <div class='col-md-4'>{{serverDetails.toZoneName}}</div>
+          </div>
+        </div>
+    </div>
+    <div class='card-footer'>
+      <div class='col-md'>
+        <button (click)="getServerDetails()">
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf='errorMessage'
+      class='alert alert-danger'>
+    Error: {{ errorMessage }}
+  </div>
+</div>
+
+

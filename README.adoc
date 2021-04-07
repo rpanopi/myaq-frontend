@@ -1,0 +1,57 @@
+= MyAQ Angular Nginx
+
+An Angular application that does the following:
+
+1. Get server date, time and time zone from 
+`http://a328489c3e16a45b0b507970913d1d99-63329243.us-east-1.elb.amazonaws.com/serverDetails`
+
+
+1. Server time converted to Manila time zone using `https://timezonedb.com/references/convert-time-zone`
+
+== Running Instance
+
+http://ae0582fd96eae43d2a1f202715ecbda3-5080593.us-east-1.elb.amazonaws.com/
+
+== How to run 
+
+* Clone the project
++
+[source,shell]
+----
+$ git clone https://github.com/rpanopi/myaq-frontend.git
+----
+
+* Go to project directory
++
+[source,shell]
+----
+$ cd myaq-frontend
+----
+
+* Build and deploy the project locally
++
+[source,shell]
+----
+$ docker build -t rpanops/myaq-frontend:1.0.0 -f nginx.dockerfile .
+$ docker run -p 8080:80 -v $(pwd)/dist:/usr/share/nginx/html rpanops/myaq-frontend:1.0.0
+----
+
+=== Deploy using docker command
+
+* Build the image (Production)
++
+[source,shell]
+----
+$ docker build -t rpanops/myaq-frontend:1.0.0 -f nginx.prod.dockerfile .
+----
+
+* Create and start the container as daemon
++
+[source,shell]
+----
+$ docker run -d -p 8080:80 rpanops/myaq-frontend:1.0.0
+----
+
+=== Verify
+
+Open browser and use docker server URL: http://localhost:4200/MyAQ/index.html
